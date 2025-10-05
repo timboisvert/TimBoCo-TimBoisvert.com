@@ -1,410 +1,161 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tim Boisvert - Full Stack Engineer | Ruby on Rails, Stimulus, Tailwind</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f8f9fa;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 80px 0;
-            text-align: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        header h1 {
-            font-size: 3em;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        header p {
-            font-size: 1.3em;
-            margin-bottom: 5px;
-            opacity: 0.95;
-        }
-
-        .tagline {
-            font-size: 1.1em;
-            font-weight: 300;
-            margin-top: 15px;
-            opacity: 0.9;
-        }
-
-        section {
-            padding: 60px 0;
-        }
-
-        section h2 {
-            font-size: 2.5em;
-            margin-bottom: 30px;
-            text-align: center;
-            color: #2d3748;
-        }
-
-        .about {
-            background-color: white;
-            padding: 60px 0;
-        }
-
-        .about-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-            font-size: 1.2em;
-            line-height: 1.8;
-            color: #4a5568;
-        }
-
-        .about-content p {
-            margin-bottom: 20px;
-        }
-
-        .skills {
-            background-color: #f8f9fa;
-        }
-
-        .skills-list {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 30px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .skill-item {
-            background: white;
-            padding: 30px 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            text-align: center;
-            min-width: 200px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .skill-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
-        }
-
-        .skill-item h3 {
-            font-size: 1.5em;
-            color: #667eea;
-            margin-bottom: 10px;
-        }
-
-        .skill-item p {
-            color: #718096;
-        }
-
-        .portfolio {
-            background-color: white;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .project-card {
-            background: #f8f9fa;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
-        }
-
-        .project-image {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 3em;
-            font-weight: bold;
-        }
-
-        .project-content {
-            padding: 25px;
-        }
-
-        .project-content h3 {
-            font-size: 1.5em;
-            margin-bottom: 10px;
-            color: #2d3748;
-        }
-
-        .project-content p {
-            color: #4a5568;
-            line-height: 1.6;
-        }
-
-        .project-tech {
-            margin-top: 15px;
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .tech-tag {
-            background: #667eea;
-            color: white;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.85em;
-        }
-
-        .availability {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-align: center;
-            padding: 60px 0;
-        }
-
-        .availability h2 {
-            color: white;
-            margin-bottom: 20px;
-        }
-
-        .availability p {
-            font-size: 1.3em;
-            margin-bottom: 10px;
-        }
-
-        .cta-button {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 15px 40px;
-            background: white;
-            color: #667eea;
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: 600;
-            font-size: 1.1em;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
-        }
-
-        footer {
-            background: #2d3748;
-            color: white;
-            text-align: center;
-            padding: 30px 0;
-        }
-
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2em;
-            }
-
-            header p {
-                font-size: 1.1em;
-            }
-
-            section h2 {
-                font-size: 2em;
-            }
-
-            .about-content {
-                font-size: 1.1em;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .skills-list {
-                flex-direction: column;
-            }
-        }
-    </style>
+    <title>TimBoCo / Tim Boisvert</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <header>
-        <div class="container">
-            <h1>Tim Boisvert</h1>
-            <p>Full Stack Engineer</p>
-            <p class="tagline">Seasoned engineer with a decade in senior technical leadership</p>
-            <p class="tagline">Now back to my engineering passion</p>
-        </div>
-    </header>
 
-    <section class="about">
-        <div class="container">
-            <h2>About Me</h2>
-            <div class="about-content">
-                <p>
-                    After spending a decade in senior technical leadership positions, I've returned to what I love most: 
-                    building exceptional web applications. My leadership experience gives me a unique perspective on 
-                    creating scalable, maintainable solutions that align with business objectives.
+<body class="bg-white text-black">
+
+    <section class="bg-[#000814] p-10">
+        <div class="flex flex-col md:flex-row items-center p-5 gap-10 max-w-5xl mx-auto">
+            <img src="images/tim.jpg" alt="Tim Boisvert" class="w-72 h-72 rounded-full object-cover shadow-lg">
+            <div class="w-full text-lg text-gray-100">
+                <p class="">
+                    I'm <span class="font-bold">Tim Boisvert</span>, a Chicago-based Rails developer and
+                    technical leader.
                 </p>
-                <p>
-                    I combine deep technical expertise with strategic thinking, ensuring that every line of code 
-                    contributes to the bigger picture. Whether architecting new features or refining existing systems, 
-                    I bring both the hands-on skills and the high-level vision needed for success.
+                <p class="mt-4">
+                    I've been at this for a while now, first as an engineer and later as a technical leader. Most
+                    recently
+                    I led large tech teams as the CTO of AirHelp, VP of Engineering at wefox, and VP of Engineering at
+                    Yahoo. Before that I cut my leadership teeth at AOL, Ashe Avenue, and Red Hat, while holding on to
+                    my
+                    engineering roots. Now I'm building CocoScout while also taking on freelance and contract work.
+                </p>
+                <p class="mt-4">
+                    I'm an advanced-level <b>Rails developer</b>, having built dozens of tools, sites, and
+                    services
+                    over the years.
+                    <b>I'm quick, communicative, and ready to help.</b>
                 </p>
             </div>
         </div>
     </section>
 
-    <section class="skills">
-        <div class="container">
-            <h2>Core Technologies</h2>
-            <div class="skills-list">
-                <div class="skill-item">
-                    <h3>Ruby on Rails</h3>
-                    <p>Expert in building robust, scalable backend systems</p>
-                </div>
-                <div class="skill-item">
-                    <h3>Stimulus</h3>
-                    <p>Creating interactive, modern frontend experiences</p>
-                </div>
-                <div class="skill-item">
-                    <h3>Tailwind CSS</h3>
-                    <p>Crafting beautiful, responsive user interfaces</p>
-                </div>
+    <section class="bg-white">
+        <div class="px-5 py-7 pt-8 flex flex-wrap gap-8 items-center justify-between max-w-5xl mx-auto">
+            <img src="images/logos/yahoo.svg" alt="Yahoo" class="h-10 w-auto transition" />
+            <img src="images/logos/aol.svg" alt="AOL" class="h-8 w-auto transition mb-1" />
+            <img src="images/logos/airhelp.svg" alt="AirHelp" class="h-9 w-auto transition mt-1" />
+            <img src="images/logos/wefox.svg" alt="wefox" class="h-7 w-auto transition mb-1" />
+            <img src="images/logos/redhat.svg" alt="Red Hat" class="h-12 w-auto transition" />
+            <img src="images/logos/asheavenue.svg" alt="Ashe Avenue" class="h-10 w-auto transition" />
+        </div>
+
+    </section>
+
+    <section class="bg-[#001D3D] p-10">
+
+        <div class=" max-w-5xl mx-auto">
+            <h2 class="text-2xl text-white font-semibold mb-6">Some of this year's work:</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <a href="https://cocoscout.com" target="_blank"
+                    class="group flex flex-col h-full rounded-lg overflow-hidden shadow hover:shadow-lg transition">
+                    <img src="images/screenshots/www.cocoscout.com.png" alt="CocoScout Screenshot"
+                        class="w-full h-48 object-cover group-hover:scale-105 transition">
+                    <div class="flex flex-col flex-1 p-4 bg-white">
+                        <h3 class="text-xl font-semibold mb-2">CocoScout</h3>
+                        <p class="flex-1">Currently building the world's premier tool for entertainment production
+                            management</p>
+                    </div>
+                </a>
+
+                <a href="https://starsandgartersclub.com" target="_blank"
+                    class="group flex flex-col h-full rounded-lg overflow-hidden shadow hover:shadow-lg transition">
+                    <img src="images/screenshots/www.starsandgartersclub.com.png" alt="Stars & Garters Screenshot"
+                        class="w-full h-48 object-cover group-hover:scale-105 transition">
+                    <div class="flex flex-col flex-1 p-4 bg-white">
+                        <h3 class="text-xl font-semibold mb-2">Stars &amp; Garters</h3>
+                        <p class="flex-1">The home of Chicago's finest comedy, magic, drag and burlesque entertainment
+                        </p>
+                    </div>
+                </a>
+
+                <a href="https://cocorunseverything.com" target="_blank"
+                    class="group flex flex-col h-full rounded-lg overflow-hidden shadow hover:shadow-lg transition">
+                    <img src="images/screenshots/www.cocorunseverything.com.png" alt="Coco Runs Everything Screenshot"
+                        class="w-full h-48 object-cover group-hover:scale-105 transition">
+                    <div class="flex flex-col flex-1 p-4 bg-white">
+                        <h3 class="text-xl font-semibold mb-2">Coco Runs Everything</h3>
+                        <p class="flex-1">Chicago-based comedy production and technology company</p>
+                    </div>
+                </a>
+
+                <a href="https://laughalonglive.com" target="_blank"
+                    class="group flex flex-col h-full rounded-lg overflow-hidden shadow hover:shadow-lg transition">
+                    <img src="images/screenshots/www.laughalonglive.com.png" alt="Laugh-Along, Live! Screenshot"
+                        class="w-full h-48 object-cover group-hover:scale-105 transition">
+                    <div class="flex flex-col flex-1 p-4 bg-white">
+                        <h3 class="text-xl font-semibold mb-2">Laugh-Along, Live!</h3>
+                        <p class="flex-1">Watch Midnight Movies with Chicago's Funniest Comedians!</p>
+                    </div>
+                </a>
+                <a href="https://bubbacherry.com" target="_blank"
+                    class="group flex flex-col h-full rounded-lg overflow-hidden shadow hover:shadow-lg transition">
+                    <img src="images/screenshots/www.bubbacherry.com.png" alt="Bubba Cherry Screenshot"
+                        class="w-full h-48 object-cover group-hover:scale-105 transition">
+                    <div class="flex flex-col flex-1 p-4 bg-white">
+                        <h3 class="text-xl font-semibold mb-2">Bubba Cherry</h3>
+                        <p class="flex-1">An offline humor magazine</p>
+                    </div>
+                </a>
+                <a href="https://comedypageant.com" target="_blank"
+                    class="group flex flex-col h-full rounded-lg overflow-hidden shadow hover:shadow-lg transition">
+                    <img src="images/screenshots/www.comedypageant.com.png" alt="Comedy Pageant Screenshot"
+                        class="w-full h-48 object-cover group-hover:scale-105 transition">
+                    <div class="flex flex-col flex-1 p-4 bg-white">
+                        <h3 class="text-xl font-semibold mb-2">Comedy Pageant</h3>
+                        <p class="flex-1">Watch comedians compete in a short-form improv showdown that's also a beauty
+                            pageant!</p>
+                    </div>
+                </a>
             </div>
+
         </div>
+
+
     </section>
 
-    <section class="portfolio">
-        <div class="container">
-            <h2>Portfolio</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image">1</div>
-                    <div class="project-content">
-                        <h3>E-Commerce Platform</h3>
-                        <p>A full-featured online marketplace with real-time inventory management, secure payment processing, and advanced analytics dashboard.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Rails</span>
-                            <span class="tech-tag">Stimulus</span>
-                            <span class="tech-tag">Tailwind</span>
-                            <span class="tech-tag">PostgreSQL</span>
-                        </div>
-                    </div>
-                </div>
+    <section class="bg-[#003566] p-10">
+        <div class="max-w-5xl mx-auto text-xl flex items-center justify-center text-center">
+            <h1 class="inline-block text-white">Want to build something quickly? Get in touch! </h1>
+            <a href="mailto:boisvert@gmail.com"
+                class="ml-4 inline-block bg-white text-black hover:bg-black hover:text-white px-4 py-2 rounded font-bold ">
+                Email
+            </a>
+            <a href="https://www.linkedin.com/in/timboisvert/" target="_blank" rel="noopener noreferrer"
+                class="ml-4 inline-flex items-center font-bold px-4 py-2 rounded bg-[#0072b1] text-white hover:bg-white hover:text-[#0072b1] transition">
+                <span class="[&>svg]:h-6 [&>svg]:w-6 mr-2">
 
-                <div class="project-card">
-                    <div class="project-image">2</div>
-                    <div class="project-content">
-                        <h3>SaaS Management System</h3>
-                        <p>Enterprise-grade subscription management platform with role-based access control, automated billing, and comprehensive reporting.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Rails</span>
-                            <span class="tech-tag">Stimulus</span>
-                            <span class="tech-tag">Tailwind</span>
-                            <span class="tech-tag">Redis</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">3</div>
-                    <div class="project-content">
-                        <h3>Project Collaboration Tool</h3>
-                        <p>Real-time team collaboration platform featuring task management, file sharing, and integrated communication tools.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Rails</span>
-                            <span class="tech-tag">Stimulus</span>
-                            <span class="tech-tag">Tailwind</span>
-                            <span class="tech-tag">ActionCable</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">4</div>
-                    <div class="project-content">
-                        <h3>Customer Analytics Dashboard</h3>
-                        <p>Interactive analytics platform providing real-time insights into customer behavior, conversion metrics, and revenue trends.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Rails</span>
-                            <span class="tech-tag">Stimulus</span>
-                            <span class="tech-tag">Tailwind</span>
-                            <span class="tech-tag">Chart.js</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">5</div>
-                    <div class="project-content">
-                        <h3>Content Management System</h3>
-                        <p>Flexible CMS with drag-and-drop page builder, multi-site support, and advanced SEO optimization capabilities.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Rails</span>
-                            <span class="tech-tag">Stimulus</span>
-                            <span class="tech-tag">Tailwind</span>
-                            <span class="tech-tag">Trix</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">6</div>
-                    <div class="project-content">
-                        <h3>Scheduling Application</h3>
-                        <p>Smart scheduling system with automated conflict resolution, calendar integrations, and customizable booking workflows.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Rails</span>
-                            <span class="tech-tag">Stimulus</span>
-                            <span class="tech-tag">Tailwind</span>
-                            <span class="tech-tag">Sidekiq</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 448 512">
+                        <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
+                        <path
+                            d="M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8a53.8 53.8 0 0 1 107.6 0c0 29.7-24.1 54.3-53.8 54.3zM447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z" />
+                    </svg>
+                </span>
+                LinkedIn
+            </a>
+            <a href="https://www.instagram.com/timboisvert/" target="_blank" rel="noopener noreferrer"
+                class="ml-4 inline-flex items-center font-bold bg-[#C13584] text-white px-4 py-2 rounded hover:bg-white hover:text-[#C13584] transition">
+                <span class="[&>svg]:h-6 [&>svg]:w-6 mr-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 448 512">
+                        <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
+                        <path
+                            d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" />
+                    </svg>
+                </span>
+                Instagram
+            </a>
         </div>
     </section>
-
-    <section class="availability">
-        <div class="container">
-            <h2>Available for Project Work</h2>
-            <p>I'm currently accepting new projects and consulting opportunities.</p>
-            <p>Let's build something exceptional together.</p>
-            <a href="mailto:contact@timboisvert.com" class="cta-button">Get in Touch</a>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Tim Boisvert. All rights reserved.</p>
-        </div>
-    </footer>
 </body>
+
+
+
 </html>
